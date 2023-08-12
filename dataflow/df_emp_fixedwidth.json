@@ -1,0 +1,69 @@
+{
+	"name": "df_emp_fixedwidth",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_emp_fixedwidth",
+						"type": "DatasetReference"
+					},
+					"name": "empfixed"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_adf_demo",
+						"type": "DatasetReference"
+					},
+					"name": "sinkempfixedwidth"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Column_1 as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> empfixed",
+				"empfixed derive(id = substring(Column_1,1,4),",
+				"          name = substring(Column_1,5,9),",
+				"          state = substring(Column_1,15,2),",
+				"          contact = substring(Column_1,17)) ~> derivedColumn1",
+				"derivedColumn1 select(mapColumn(",
+				"          id,",
+				"          name,",
+				"          state,",
+				"          contact",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          categoryID as string,",
+				"          categoryName as string,",
+				"          description as string,",
+				"          picture as string",
+				"     ),",
+				"     partitionFileNames:['empfilefromfixwidth.csv'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sinkempfixedwidth"
+			]
+		}
+	}
+}

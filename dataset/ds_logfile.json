@@ -1,0 +1,66 @@
+{
+	"name": "ds_logfile",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_practice_storagedatalake",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"logfileName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().logfileName",
+					"type": "Expression"
+				},
+				"folderPath": "log",
+				"fileSystem": "sourcefiles"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "empno",
+				"type": "String"
+			},
+			{
+				"name": "ename",
+				"type": "String"
+			},
+			{
+				"name": "job",
+				"type": "String"
+			},
+			{
+				"name": "mgr",
+				"type": "String"
+			},
+			{
+				"name": "hiredate",
+				"type": "String"
+			},
+			{
+				"name": "sal",
+				"type": "String"
+			},
+			{
+				"name": "comm",
+				"type": "String"
+			},
+			{
+				"name": "deptno",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

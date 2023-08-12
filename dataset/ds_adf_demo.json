@@ -1,0 +1,42 @@
+{
+	"name": "ds_adf_demo",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_practice_storagedatalake",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "emp_file_DenseRank",
+				"folderPath": "outputfiles",
+				"fileSystem": "adfdemo"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "categoryID",
+				"type": "String"
+			},
+			{
+				"name": "categoryName",
+				"type": "String"
+			},
+			{
+				"name": "description",
+				"type": "String"
+			},
+			{
+				"name": "picture",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

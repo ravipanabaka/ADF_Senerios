@@ -1,0 +1,33 @@
+{
+	"name": "Ds_Dynamic_file_gen",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_practice_storagedatalake",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Filename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat(dataset().Filename,'.csv')",
+					"type": "Expression"
+				},
+				"folderPath": "SQL tables ",
+				"fileSystem": "adfdemo"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

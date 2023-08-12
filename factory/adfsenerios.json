@@ -1,0 +1,9 @@
+{
+	"name": "adfsenerios",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "2e76a3bc-0752-4e9b-9964-db003ea9a323",
+		"tenantId": "62fde960-9d02-4eac-94c6-c930a3798c95"
+	}
+}

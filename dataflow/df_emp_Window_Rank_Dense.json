@@ -1,0 +1,64 @@
+{
+	"name": "df_emp_Window_Rank_Dense",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Ds_emp_demo",
+						"type": "DatasetReference"
+					},
+					"name": "EMP"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_adf_demo",
+						"type": "DatasetReference"
+					},
+					"name": "sinkDenskRank"
+				}
+			],
+			"transformations": [
+				{
+					"name": "windowDenseRank"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          empno as string,",
+				"          ename as string,",
+				"          job as string,",
+				"          mgr as string,",
+				"          hiredate as string,",
+				"          sal as string,",
+				"          comm as string,",
+				"          deptno as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> EMP",
+				"EMP window(over(deptno),",
+				"     desc(sal, true),",
+				"     DenseRank = denseRank()) ~> windowDenseRank",
+				"windowDenseRank sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          categoryID as string,",
+				"          categoryName as string,",
+				"          description as string,",
+				"          picture as string",
+				"     ),",
+				"     partitionFileNames:['emp_DenseRank'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sinkDenskRank"
+			]
+		}
+	}
+}
