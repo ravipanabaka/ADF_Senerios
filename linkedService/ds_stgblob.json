@@ -1,0 +1,12 @@
+{
+	"name": "ds_stgblob",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://adlsdev10.dfs.core.windows.net/",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQEFCMjk3RTdDLUM5RjktNDQyNC05NzE5LUNDMTE2RDE1Q0MyRV9lNzhlMzk2ZS1hNWYwLTRlOTgtOTM0My1hM2I2NzIzZjY2YWIiDQp9"
+		}
+	}
+}

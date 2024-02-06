@@ -1,0 +1,9 @@
+{
+	"name": "adf-feb-practice",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "8cb1e28e-0309-4d44-805b-ac553f1db0cd",
+		"tenantId": "9e405e83-ed22-4921-a172-0321acf17b84"
+	}
+}
